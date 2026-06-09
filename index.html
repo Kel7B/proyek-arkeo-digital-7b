@@ -392,6 +392,129 @@ body::after {
     border-color: #e8cf8a;
 }
 
+/* ========== HALAMAN SUMBER REFERENSI (BARU - SESUAI PERMINTAAN) ========== */
+.references-page {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(12px);
+    border-radius: 48px;
+    padding: 40px 32px;
+    margin-bottom: 28px;
+    border: 2px solid rgba(212, 175, 106, 0.6);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.5);
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+.references-page h2 {
+    font-family: 'Cinzel', serif;
+    color: #e8cf8a;
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 16px;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.references-page .ref-intro {
+    text-align: center;
+    color: #d4c49c;
+    margin-bottom: 32px;
+    font-style: italic;
+    border-bottom: 1px dashed #b69b58;
+    padding-bottom: 16px;
+}
+
+.reference-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ref-item {
+    background: rgba(30, 27, 22, 0.8);
+    border-left: 4px solid #d4af6a;
+    border-radius: 24px;
+    padding: 18px 24px;
+    transition: 0.2s;
+}
+
+.ref-item:hover {
+    background: rgba(50, 45, 35, 0.9);
+    transform: translateX(6px);
+}
+
+.ref-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #f2e5bc;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(212, 175, 106, 0.3);
+    padding-bottom: 8px;
+}
+
+.ref-title .ref-icon {
+    font-size: 1.3rem;
+}
+
+.ref-subtitle {
+    font-size: 0.9rem;
+    color: #d4af6a;
+    margin-left: 28px;
+    margin-bottom: 8px;
+    font-style: italic;
+}
+
+.ref-detail {
+    color: #cfc294;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-left: 28px;
+    word-break: break-word;
+}
+
+.ref-detail p {
+    margin: 6px 0;
+}
+
+.ref-detail .ref-note {
+    color: #b69b58;
+    font-size: 0.85rem;
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px dashed rgba(212, 175, 106, 0.3);
+}
+
+.back-to-menu-ref {
+    display: block;
+    margin: 32px auto 0;
+    background: linear-gradient(135deg, #7a623e, #5c4a2e);
+    border: none;
+    padding: 12px 28px;
+    border-radius: 60px;
+    color: #fef3db;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    width: fit-content;
+    box-shadow: 0 5px 0 #4a3a20;
+}
+
+.back-to-menu-ref:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #4a3a20;
+}
+
+.back-to-menu-ref:hover {
+    background: linear-gradient(135deg, #9a7a4a, #7a623e);
+    transform: translateY(-2px);
+}
+
 /* Elemen tersembunyi untuk keperluan JavaScript (tidak terlihat) */
 .hidden-stats {
     display: none;
@@ -1040,6 +1163,8 @@ model-viewer {
     .clue-popup-content h2 { font-size: 1rem; }
     .clue-question p { font-size: 0.8rem; }
     .quiz-option { padding: 6px 10px; font-size: 0.75rem; }
+    .references-page { padding: 24px 20px; }
+    .ref-title { font-size: 1rem; }
 }
 
 .score-animation {
@@ -1095,7 +1220,7 @@ model-viewer {
         <button id="enterMainMenuBtn" class="splash-btn">⚡ MULAI EKSPEDISI ⚡</button>
         
         <div class="splash-footer">
-            <p>© 2026 Kelompok 7B Arkeologi Digital | Fragment Of The Past
+            <p>© 2026 Kelompok 7B Arkeologi Digital | Fragment Of The Past</p>
         </div>
     </div>
 </div>
@@ -1112,7 +1237,85 @@ model-viewer {
         <div class="menu-buttons">
             <button class="menu-btn menu-btn-primary" id="menuStartBtn">⚡ MULAI EKSPEDISI</button>
             <button class="menu-btn menu-btn-secondary" id="menuResetScoreBtn">⟳ RESET PRESTASI</button>
+            <button class="menu-btn menu-btn-secondary" id="menuReferencesBtn">📚 SUMBER REFERENSI</button>
         </div>
+    </div>
+    
+    <!-- HALAMAN SUMBER REFERENSI (BARU - SESUAI PERMINTAAN) -->
+    <div id="referencesPage" class="references-page" style="display: none;">
+        <h2>📜 DAFTAR PUSTAKA & REFERENSI</h2>
+        <div class="ref-intro">Sumber-sumber akademik yang digunakan dalam penyusunan deskripsi objek dan konten edukasi "Fragment of the Past"</div>
+        <div class="reference-list">
+            <!-- 1. Lukisan Cap Tangan dan Babi di Gua Pettakere -->
+            <div class="ref-item">
+                <div class="ref-title"><span class="ref-icon">🏺</span> 1. Lukisan Cap Tangan dan Babi di Gua Pettakere</div>
+                <div class="ref-subtitle">Leang Pettakere, Maros-Pangkep</div>
+                <div class="ref-detail">
+                    <p>• Aubert, M., dkk. 2014. <em>Pleistocene Cave Art from Sulawesi, Indonesia</em>. Nature, 514, 223–227.</p>
+                    <p>• Hakim, B. 2014. <em>Seni Cadas Prasejarah Sulawesi Selatan</em>. Balai Arkeologi Makassar.</p>
+                    <p>• Oktaviana, A.A., dkk. 2021. <em>Oldest Cave Art Found in Sulawesi</em>. Science Advances.</p>
+                </div>
+            </div>
+            
+            <!-- 2. Maros Point -->
+            <div class="ref-item">
+                <div class="ref-title"><span class="ref-icon">🗡️</span> 2. Maros Point</div>
+                <div class="ref-subtitle">Teknologi Serpih Khas Budaya Toalean</div>
+                <div class="ref-detail">
+                    <p>• Suryatman, Hakim, B., Mahmud, M.I., dkk. 2019. <em>Artefak Batu Preneolitik Situs Leang Jarie: Bukti Teknologi Maros Point Tertua di Kawasan Budaya Toalean, Sulawesi Selatan</em>. Jurnal AMERTA 37(1): 1–17.</p>
+                    <p>• Bulbeck, D. 2004. <em>The Toalean of South Sulawesi</em>. Modern Quaternary Research in Southeast Asia.</p>
+                    <p>• Bellwood, P. 2017. <em>First Islanders: Prehistory and Human Migration in Island Southeast Asia</em>.</p>
+                </div>
+            </div>
+            
+            <!-- 3. Gerabah Benteng Somba Opu -->
+            <div class="ref-item">
+                <div class="ref-title"><span class="ref-icon">🏺</span> 3. Gerabah Benteng Somba Opu</div>
+                <div class="ref-subtitle">Tradisi Austronesia dan Teknologi Gerabah</div>
+                <div class="ref-detail">
+                    <p>• Simanjuntak, T. 2008. <em>Metode Penelitian Arkeologi</em>.</p>
+                    <p>• Soejono, R.P. & Leirissa, R.Z. 2010. <em>Sejarah Nasional Indonesia Jilid I</em>.</p>
+                    <p>• Bellwood, P. 2005. <em>First Farmers: The Origins of Agricultural Societies</em>.</p>
+                    <p>• Anggraeni. 2012. <em>The Austronesian Pottery Tradition in Indonesia</em>.</p>
+                </div>
+            </div>
+            
+            <!-- 4. Benteng Rotterdam -->
+            <div class="ref-item">
+                <div class="ref-title"><span class="ref-icon">🏛️</span> 4. Benteng Rotterdam</div>
+                <div class="ref-subtitle">Fort Rotterdam - Pusat Sejarah Kolonial dan Kerajaan Gowa</div>
+                <div class="ref-detail">
+                    <p>• Mattulada. 1982. <em>Sejarah, Masyarakat dan Kebudayaan Sulawesi Selatan</em>.</p>
+                    <p>• Reid, A. 1983. <em>Slavery, Bondage and Dependency in Southeast Asia</em>.</p>
+                    <p>• Dinas Kebudayaan dan Pariwisata Sulawesi Selatan, Museum La Galigo.</p>
+                    <p class="ref-note">📌 Museum La Galigo berada di kompleks Benteng Rotterdam dan menyimpan koleksi sejarah serta budaya Sulawesi Selatan.</p>
+                </div>
+            </div>
+            
+            <!-- 5. Nisan Datok ri Bandang -->
+            <div class="ref-item">
+                <div class="ref-title"><span class="ref-icon">🕌</span> 5. Nisan Datok ri Bandang</div>
+                <div class="ref-subtitle">Datok ri Bandang - Penyebaran Islam di Sulawesi Selatan</div>
+                <div class="ref-detail">
+                    <p>• Pelras, C. 1996. <em>The Bugis</em>.</p>
+                    <p>• Ambary, H.M. 1998. <em>Menemukan Peradaban: Jejak Arkeologis dan Historis Islam Indonesia</em>.</p>
+                    <p>• Hamonic, G. 1985. <em>Islamisasi Sulawesi Selatan</em>.</p>
+                </div>
+            </div>
+            
+            <!-- 6. Makam Sultan Hasanuddin -->
+            <div class="ref-item">
+                <div class="ref-title"><span class="ref-icon">👑</span> 6. Makam Sultan Hasanuddin</div>
+                <div class="ref-subtitle">Ayam Jantan dari Timur - Kompleks Makam Raja-Raja Gowa</div>
+                <div class="ref-detail">
+                    <p>• Mattulada. 1993. <em>Menyusuri Jejak Kehadiran Makassar dalam Sejarah</em>.</p>
+                    <p>• Andaya, L.Y. 1981. <em>The Heritage of Arung Palakka</em>.</p>
+                    <p>• Pusat Penelitian Arkeologi Nasional. 2012. <em>Kompleks Makam Raja-Raja Gowa Katangka</em>.</p>
+                    <p>• Dinas Kebudayaan Kabupaten Gowa. <em>Data Cagar Budaya Kompleks Makam Sultan Hasanuddin</em>.</p>
+                </div>
+            </div>
+        </div>
+        <button id="backFromReferencesBtn" class="back-to-menu-ref">⟵ KEMBALI KE MENU UTAMA</button>
     </div>
     
     <!-- Elemen tersembunyi untuk keperluan JavaScript -->
@@ -1675,6 +1878,7 @@ function showWrongNotif(){
 
 function showMenu(){ 
     document.getElementById('mainMenu').style.display='block'; 
+    document.getElementById('referencesPage').style.display='none';
     document.getElementById('gameArea').style.display='none'; 
     document.getElementById('audioControls').style.display='flex';
     if(timerInterval)clearInterval(timerInterval); 
@@ -1688,6 +1892,7 @@ function showMenu(){
 
 function showGame(){ 
     document.getElementById('mainMenu').style.display='none'; 
+    document.getElementById('referencesPage').style.display='none';
     document.getElementById('gameArea').style.display='block'; 
     document.getElementById('audioControls').style.display='flex';
     currentLevel=1; 
@@ -1696,6 +1901,15 @@ function showGame(){
     updateHighScoreUI(); 
     updateLevelCounter();
     startGameWithClue(); 
+}
+
+function showReferences() {
+    document.getElementById('mainMenu').style.display = 'none';
+    document.getElementById('referencesPage').style.display = 'block';
+    document.getElementById('gameArea').style.display = 'none';
+    document.getElementById('audioControls').style.display = 'flex';
+    if(timerInterval) clearInterval(timerInterval);
+    playClickSound();
 }
 
 function closeSplashAndShowMenu() {
@@ -1784,6 +1998,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     
     document.getElementById('mainMenu').style.display = 'none';
     document.getElementById('gameArea').style.display = 'none';
+    document.getElementById('referencesPage').style.display = 'none';
     document.getElementById('audioControls').style.display = 'none';
     
     const toggleMusic=document.getElementById("toggleMusicBtn"), toggleSfx=document.getElementById("toggleSfxBtn"), themeToggle=document.getElementById("themeToggleBtn");
@@ -1802,6 +2017,8 @@ document.addEventListener("DOMContentLoaded",()=>{
     document.getElementById("enterMainMenuBtn").addEventListener("click", closeSplashAndShowMenu);
     document.getElementById("menuStartBtn").addEventListener("click",()=>{ playClickSound(); showGame(); });
     document.getElementById("menuResetScoreBtn").addEventListener("click",resetHighScore);
+    document.getElementById("menuReferencesBtn").addEventListener("click", showReferences);
+    document.getElementById("backFromReferencesBtn").addEventListener("click", () => { playClickSound(); showMenu(); });
     document.getElementById("backToMenuBtn").addEventListener("click",()=>{ playClickSound(); showMenu(); });
     document.getElementById("gameNextBtn").addEventListener("click",()=>{
         if(levelCompleted){

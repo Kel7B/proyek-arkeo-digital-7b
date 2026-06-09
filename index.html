@@ -290,123 +290,84 @@ body::after {
     letter-spacing: 5px;
 }
 
-/* ========== MAIN MENU ========== */
+/* ========== MAIN MENU - SEPERTI FOTO REFERENSI (AWESOME GAME) ========== */
 .main-menu {
-    background: var(--menu-bg);
-    backdrop-filter: blur(12px);
-    border-radius: 36px;
-    padding: 28px 24px;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    border-radius: 40px;
     margin-bottom: 28px;
-    box-shadow: 0 20px 35px var(--menu-shadow);
-    border: 1px solid rgba(170, 148, 90, 0.35);
-}
-
-.logo-area {
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(212, 175, 106, 0.6);
+    padding: 60px 30px;
+    min-height: 70vh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    gap: 18px;
-    margin-bottom: 28px;
-    flex-wrap: wrap;
-    border-bottom: 1px solid rgba(170, 148, 90, 0.4);
-    padding-bottom: 16px;
+    align-items: center;
 }
 
-.logo-icon {
-    font-size: 3rem;
-    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+/* Logo area - JUDUL BESAR seperti AWESOME GAME */
+.logo-area {
+    text-align: center;
+    margin-bottom: 60px;
 }
 
 .logo-text h1 {
-    font-size: 2rem;
+    font-size: 4.5rem;
     margin: 0;
-    letter-spacing: 3px;
-    font-weight: 500;
+    letter-spacing: 10px;
+    font-weight: 800;
     color: #f2e5c6;
-    text-shadow: 2px 2px 0 #3f3322;
+    text-shadow: 5px 5px 0 #3f3322, 3px 3px 15px rgba(0,0,0,0.5);
     font-family: 'Cinzel', 'Georgia', serif;
+    line-height: 1.2;
 }
 
 .logo-text p {
-    margin: 6px 0 0;
-    font-size: 0.85rem;
+    margin: 15px 0 0;
+    font-size: 1rem;
     color: #d4c49c;
-    letter-spacing: 2px;
+    letter-spacing: 5px;
     font-style: italic;
 }
 
-.stats-cards {
-    display: flex;
-    justify-content: center;
-    gap: 28px;
-    margin-bottom: 32px;
-    flex-wrap: wrap;
-}
-
-.stat-card {
-    background: var(--card-bg);
-    border-radius: 28px;
-    padding: 12px 24px;
-    min-width: 150px;
-    text-align: center;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(180, 155, 100, 0.5);
-    transition: 0.2s;
-}
-
-.stat-card:hover {
-    border-color: #dbb87c;
-    background: rgba(70, 60, 45, 0.85);
-}
-
-.stat-icon {
-    font-size: 1.7rem;
-    display: block;
-    margin-bottom: 6px;
-}
-
-.stat-value {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #e7b87a;
-    font-family: 'Courier New', monospace;
-}
-
-.stat-label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #cfc19e;
-}
-
+/* MENU BUTTONS - SEPERTI REFERENSI (VERTIKAL KE BAWAH) */
 .menu-buttons {
     display: flex;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
 }
 
 .menu-btn {
-    padding: 12px 32px;
-    font-size: 1rem;
-    font-weight: 500;
+    width: 100%;
+    padding: 16px 32px;
+    font-size: 1.3rem;
+    font-weight: 600;
     border: none;
-    border-radius: 48px;
+    border-radius: 60px;
     cursor: pointer;
     transition: 0.2s;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 12px;
     font-family: 'Cormorant Garamond', serif;
-    letter-spacing: 1px;
-    background: #5f4d32;
+    letter-spacing: 2px;
+    background: #2a2418cc;
     color: #f2e5cf;
-    box-shadow: 0 5px 0 #3b2e1e;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(212, 175, 106, 0.5);
+    box-shadow: 0 5px 0 #1a1610;
 }
 
 .menu-btn-primary {
-    background: #7a623a;
+    background: #7a623acc;
     color: #fef3db;
+    border-color: #e8cf8a;
     box-shadow: 0 5px 0 #4a3a20;
 }
 
@@ -416,7 +377,7 @@ body::after {
 }
 
 .menu-btn-secondary {
-    background: #4e3f2c;
+    background: #4e3f2ccc;
     box-shadow: 0 5px 0 #2f2418;
 }
 
@@ -426,10 +387,17 @@ body::after {
 }
 
 .menu-btn:hover {
-    filter: brightness(1.08);
+    filter: brightness(1.1);
     transform: translateY(-2px);
+    border-color: #e8cf8a;
 }
 
+/* Elemen tersembunyi untuk keperluan JavaScript (tidak terlihat) */
+.hidden-stats {
+    display: none;
+}
+
+/* ========== GAME AREA STYLES (TIDAK DIUBAH) ========== */
 .game-info-panel {
     background: var(--panel-bg);
     border-radius: 56px;
@@ -619,6 +587,7 @@ body::after {
     background: var(--btn-disabled-bg);
 }
 
+/* ========== POPUP STYLES (TIDAK DIUBAH) ========== */
 #cluePopup {
     display: none;
     position: fixed;
@@ -634,7 +603,6 @@ body::after {
     cursor: pointer;
 }
 
-/* CLUE POPUP - DIPERKECIL (sesuai permintaan sebelumnya) */
 .clue-popup-content {
     background: rgba(25, 23, 20, 0.95);
     backdrop-filter: blur(20px);
@@ -802,7 +770,6 @@ body::after {
     cursor: not-allowed;
 }
 
-/* ========== POPUP ARTEFAK - DIPERKECIL ========== */
 #popup {
     display: none;
     position: fixed;
@@ -967,7 +934,6 @@ model-viewer {
     border-color: #e8cf8a;
 }
 
-/* Ucapan Selamat Khusus Level 5 */
 .congrats-message {
     background: linear-gradient(135deg, #d4af37, #b8860b);
     border-radius: 40px;
@@ -1054,10 +1020,9 @@ model-viewer {
 
 @media (max-width: 620px) {
     .container { padding: 12px 16px; }
-    .logo-text h1 { font-size: 1.3rem; }
-    .stat-card { padding: 8px 14px; min-width: 90px; }
-    .stat-value { font-size: 1.3rem; }
-    .menu-btn { padding: 8px 20px; font-size: 0.8rem; }
+    .logo-text h1 { font-size: 2rem; letter-spacing: 5px; }
+    .menu-btn { padding: 12px 24px; font-size: 1.1rem; min-width: 220px; }
+    .main-menu { padding: 40px 20px; }
     .game-info-card { padding: 4px 12px; font-size: 0.8rem;}
     .piece:hover { transform: translateY(-3px); }
     .audio-controls { bottom: 12px; right: 12px; padding: 5px 12px; gap: 6px; }
@@ -1071,22 +1036,10 @@ model-viewer {
     .splash-content { padding: 32px 24px; }
     .splash-title { font-size: 1.6rem; }
     .group-info p { font-size: 0.85rem; }
-    
-    /* Perbaikan untuk mobile */
-    .clue-popup-content {
-        max-width: 320px;
-        padding: 15px;
-    }
-    .clue-popup-content h2 {
-        font-size: 1rem;
-    }
-    .clue-question p {
-        font-size: 0.8rem;
-    }
-    .quiz-option {
-        padding: 6px 10px;
-        font-size: 0.75rem;
-    }
+    .clue-popup-content { max-width: 320px; padding: 15px; }
+    .clue-popup-content h2 { font-size: 1rem; }
+    .clue-question p { font-size: 0.8rem; }
+    .quiz-option { padding: 6px 10px; font-size: 0.75rem; }
 }
 
 .score-animation {
@@ -1150,28 +1103,31 @@ model-viewer {
 <div class="container">
     <div class="main-menu" id="mainMenu">
         <div class="logo-area">
-            <div class="logo-icon">🏺</div>
             <div class="logo-text">
-                <h1>FRAGMENT OF THE PAST</h1>
-                <p>Temuan Ikonik Suklawesi Selatan - 5 Level Progresif</p>
+                <h1>FRAGMENT<br>OF THE PAST</h1>
+                <p>TEMUAN IKONIK SULAWESI SELATAN</p>
             </div>
-            <div class="logo-icon">🗿</div>
         </div>
-        <div class="stats-cards">
-            <div class="stat-card"><span class="stat-icon">🏆</span><div class="stat-value" id="menuHighScore">0</div><div class="stat-label">REKOR TERTINGGI</div></div>
-            <div class="stat-card"><span class="stat-icon">📜</span><div class="stat-value" id="levelCounter">0/5</div><div class="stat-label">LEVEL</div></div>
-            <div class="stat-card"><span class="stat-icon">⭐</span><div class="stat-value" id="menuBestScore">0</div><div class="stat-label">SKOR TERBAIK</div></div>
-        </div>
+        
         <div class="menu-buttons">
             <button class="menu-btn menu-btn-primary" id="menuStartBtn">⚡ MULAI EKSPEDISI</button>
             <button class="menu-btn menu-btn-secondary" id="menuResetScoreBtn">⟳ RESET PRESTASI</button>
         </div>
     </div>
+    
+    <!-- Elemen tersembunyi untuk keperluan JavaScript -->
+    <div class="hidden-stats">
+        <div id="menuHighScore">0</div>
+        <div id="menuBestScore">0</div>
+        <div id="levelCounter">0/6</div>
+        <div id="gameHighScoreValue">0</div>
+    </div>
+    
     <div id="gameArea" style="display: none;">
         <div class="game-info-panel">
-            <div class="game-info-card">🏛️ <span id="levelText">Level 1/4</span></div>
+            <div class="game-info-card">🏛️ <span id="levelText">Level 1/6</span></div>
             <div class="game-info-card">🎯 SKOR: <span id="gameScoreValue">1200</span></div>
-            <div class="game-info-card">🏅 REKOR: <span id="gameHighScoreValue">0</span></div>
+            <div class="game-info-card">🏅 REKOR: <span id="gameHighScoreValue2">0</span></div>
             <div class="game-info-card">⏳ <span id="gameTimer">0</span> detik</div>
         </div>
         <div id="board"></div>
@@ -1182,6 +1138,7 @@ model-viewer {
         </div>
     </div>
 </div>
+
 <div class="audio-controls" id="audioControls">
     <button id="themeToggleBtn" class="audio-btn theme-toggle-btn">🌙 MALAM</button>
     <button id="toggleMusicBtn" class="audio-btn">🎵 MUSIK ON</button>
@@ -1399,9 +1356,12 @@ function toggleFullscreen() {
 // ==================== HIGH SCORE ====================
 let highScore = localStorage.getItem('museumHighScore') ? parseInt(localStorage.getItem('museumHighScore')) : 0;
 function updateHighScoreUI() {
-    document.getElementById('menuHighScore').innerText = highScore;
-    document.getElementById('menuBestScore').innerText = highScore;
-    document.getElementById('gameHighScoreValue').innerText = highScore;
+    const menuHighScore = document.getElementById('menuHighScore');
+    const menuBestScore = document.getElementById('menuBestScore');
+    const gameHighScoreValue = document.getElementById('gameHighScoreValue2');
+    if (menuHighScore) menuHighScore.innerText = highScore;
+    if (menuBestScore) menuBestScore.innerText = highScore;
+    if (gameHighScoreValue) gameHighScoreValue.innerText = highScore;
 }
 function checkAndUpdateHighScore(score) {
     if (score > highScore) { highScore = score; localStorage.setItem('museumHighScore', highScore); updateHighScoreUI(); return true; }
@@ -1409,9 +1369,20 @@ function checkAndUpdateHighScore(score) {
 }
 function resetHighScore() { if(confirm("Yakin mereset seluruh prestasi?")){ highScore=0; localStorage.setItem('museumHighScore',0); updateHighScoreUI(); playClickSound(); alert("Rekor telah direset.");} }
 
-// ==================== 5 LEVEL DENGAN 3 PILIHAN GANDA ====================
+// ==================== 6 LEVEL LENGKAP ====================
 const artefacts = {
     1: { 
+        name: "Lukisan Dinding", 
+        clue: "Objek ini merupakan salah satu seni gambar prasejarah terkenal di Maros. Terdapat jejak tangan manusia yang dibuat dengan serta gambar seekor hewan yang sering dijumpai oleh masyarakat prasejarah Sulawesi. Objek apakah yang dimaksud?", 
+        desc: "Lukisan cap tangan dan babi rusa merupakan bagian dari seni lukisan dinding gua yang ditemukan di Gua Pettakere, Maros, Sulawesi Selatan. Cap tangan dibuat dengan menempelkan tangan pada permukaan batu lalu menyemprotkan pigmen di sekelilingnya hingga membentuk siluet tangan. Sementara itu, lukisan babi menggambarkan hewan yang hidup di sekitar lingkungan masyarakat prasejarah dan kemungkinan memiliki peran penting dalam kehidupan mereka. Kedua motif ini menunjukkan bahwa manusia prasejarah telah memiliki kemampuan berpikir simbolik, mengamati lingkungan sekitar, dan mengekspresikan gagasannya melalui seni. Keberadaan lukisan tersebut menjadikan Gua Pettakere sebagai salah satu situs penting untuk memahami kehidupan dan budaya masyarakat prasejarah di Sulawesi Selatan", 
+        img: "cadas.jpeg", 
+        model3d: "cadas.glb", 
+        grid: 2, 
+        time: 40, 
+        baseScore: 1100,
+        quiz: { question: "", options: ["Lukisan Perahu dan Laut", "Lukisan Pohon dan Burung", "Lukisan Dinding Gua"], correct: 2 }
+    },
+    2: { 
         name: "Maros Point", 
         clue: "Alat batu ini merupakan salah satu ciri khas budaya Toalean di Sulawesi Selatan. Alat tersebut dibuat dengan teknik peretusan khusus dan hingga kini diduga digunakan sebagai mata panah. Alat batu apakah yang dimaksud?", 
         desc: "Maros Point adalah salah satu tipe alat serpih yang menunjukkan karakteristik teknokompleks budaya Toalean dari Sulawesi Selatan. Maros Point sudah ada sejak awal holosen dan mungkin terus diproduksi hingga akhir holosen ketika mereka bertemu migrasi penutur Austronesia. Lapisan budaya Toalean tertua yang ditemukan berada di situs Leang Jarie. Pola peretusan Maros Point yang digunakan pada kedua bagian lateral adalah bifasial dengan menggunakan teknik tekan (Preassure) serta terdapat juga teknik peretusan terjal atau dipunggungkan (backed), yaitu sebuah teknik peretusan bipolar yang biasa digunakan untuk membuat alat mikrolit. Hingga saat ini maros point masih diyakini digunakan sebagai mata panah akan tetapi masih belum ada penelitian lebih lanjut terkait fungsi sebenarnya dari alat batu ini.", 
@@ -1422,7 +1393,7 @@ const artefacts = {
         baseScore: 1200,
         quiz: { question: "", options: ["Maros Point", "Bilah Batu", "Kapak Genggam"], correct: 0 }
     },
-    2: { 
+    3: { 
         name: "Gerabah", 
         clue: "Sebuah produk kebudayaan material yang memanfaatkan tanah liat sebagai bahan baku utama. Proses pembuatannya melibatkan pembentukan manual (seperti teknik pilin atau roda putar) yang kemudian diakhiri dengan proses pembakaran suhu tinggi hingga mencapai titik kekerasan tertentu. Benda ini mencakup barang-barang fungsional maupun hiasan seperti kendi, kuali, dan vas. Artefak apakah yang dimaksud?", 
         desc: "Gerabah ini berasal dari benteng Somba opu. Gerabah merupakan artefak yang banyak ditemukan di situs prasejarah dan sejarah dan berfungsi sebagai indikator penting dalam studi arkeologi. Di Asia Tenggara, dua tradisi besar yang berperan penting dalam penyebaran teknologi gerabah adalah austronesia dan austroasiatik. Austronesia banyak berkembang di daerah kepulauan dan kawasan maritim, sementara austroasiatik lebih berkembang didaerah daratan Asia Tenggara. Pembuatan gerabah diperkirakan diperkenalkan pertama kali oleh imigran penutur austronesia sekitar 4.000 tahun yang lalu seiring munculnya pertanian. Gerabah didefinisikan sebagai jenis keramik paling sederhana yang terbuat dari tanah liat dan dibakar pada suhu relatif rendah, yaitu antara 350°C hingga 1000°C. Proses pembakaran pada suhu rendah ini menyebabkan gerabah memiliki banyak pori (porous), bertekstur agak kasar, dan bersifat permeabel atau dapat ditembus oleh air. Dari segi teknologi, pembuatan gerabah mencerminkan tahap awal adaptasi teknologi manusia yang memanfaatkan teknik-teknik manual seperti teknik pijit (pinching), pilin (coiling), tatap-batu (paddle and anvil), hingga penggunaan roda putar lambat (slow wheel) atau roda putar cepat (fast wheel).", 
@@ -1433,7 +1404,7 @@ const artefacts = {
         baseScore: 1350,
         quiz: { question: "", options: ["Maros Point", "Gelas", "Gerabah"], correct: 2 }
     },
-    3: { 
+    4: { 
         name: "Benteng Rotterdam", 
         clue: "Bangunan bersejarah ini awalnya bernama Benteng Ujung Pandang dan dibangun oleh Kerajaan Gowa sebagai pusat pertahanan serta pengawas jalur perdagangan di pesisir Makassar. Setelah Perjanjian Bongaya tahun 1667, benteng ini dikuasai oleh VOC Belanda dan namanya diubah mengikuti kota kelahiran Cornelis Speelman. Saat ini, benteng tersebut menjadi salah satu ikon sejarah Kota Makassar dan di dalamnya terdapat Museum La Galigo. Bangunan bersejarah yang dimaksud adalah", 
         desc: "Benteng Rotterdam merupakan salah satu peninggalan sejarah penting di Makassar. Awalnya bernama Benteng Ujung Pandang dan berfungsi sebagai pertahanan Kerajaan Gowa serta pengawas jalur perdagangan pesisir. Setelah Perjanjian Bongaya, benteng dikuasai VOC dan berganti nama menjadi Rotterdam, mengikuti kota kelahiran Cornelis Speelman. Benteng ini memiliki bentuk menyerupai penyu, simbol kekuatan dan kejayaan bagi masyarakat Gowa. Arsitekturnya berupa denah segi empat tidak beraturan dengan lima bastion, dinding tebal, dan berbagai bangunan pendukung yang mencerminkan fungsinya sebagai pusat pertahanan dan pemerintahan kolonial. Saat ini, Benteng Rotterdam masih terawat dengan baik dan menjadi lokasi Museum La Galigo yang menyimpan koleksi sejarah dan budaya Sulawesi Selatan.", 
@@ -1444,7 +1415,7 @@ const artefacts = {
         baseScore: 1500,
         quiz: { question: "", options: ["Benteng Vredeburg", "Benteng Rotterdam", "Marlborough"], correct: 1 }
     },
-    4: { 
+    5: { 
         name: "Nisan Datuk Ribandang", 
         clue: "Peninggalan sejarah Islam ini terdapat pada makam seorang ulama asal Minangkabau yang berjasa menyebarkan agama Islam di Kerajaan Gowa-Tallo pada awal abad ke-17. Nisannya memiliki ciri khas tipe Aceh dengan bentuk pipih memanjang dan hiasan motif tumbuhan serta geometris. Peninggalan sejarah yang dimaksud adalah", 
         desc: "Nisan Datok ri Bandang merupakan peninggalan sejarah Islam di Makassar yang terdapat pada makam Datok ri Bandang (Abdul Makmur Khatib Tunggal), seorang ulama asal Minangkabau yang berperan penting dalam penyebaran Islam di Kerajaan Gowa-Tallo pada awal abad ke-17. Nisan ini termasuk tipe nisan Aceh yang berciri pipih memanjang dengan hiasan motif tumbuhan dan geometris. Keberadaan nisan tersebut menjadi bukti hubungan budaya antara Aceh dan Sulawesi Selatan serta perkembangan Islam di wilayah tersebut.", 
@@ -1455,17 +1426,17 @@ const artefacts = {
         baseScore: 1700,
         quiz: { question: "", options: ["Makam Sultan Hasanuddin", "Makam Pangeran Diponegoro", "Nisan Datuk Ribandang"], correct: 2 }
     },
-    5: { 
+    6: { 
         name: "Makam Sultan Hasanuddin", 
         clue: "Situs sejarah ini terletak di Katangka, Kabupaten Gowa, Sulawesi Selatan. Di tempat ini dimakamkan Raja Gowa ke-16 yang terkenal karena keberaniannya memimpin perlawanan terhadap VOC Belanda pada abad ke-17. Karena kegigihan dan semangat juangnya dalam mempertahankan kedaulatan Kerajaan Gowa, tokoh tersebut mendapat julukan Ayam Jantan dari Timur. Situs sejarah yang dimaksud adalah", 
-        desc: "Sultan Hasanuddin dimakamkan dalam sebuah cungkup yang berada di Kompleks Makam Raja-Raja Gowa di Katangka, Kabupaten Gowa, Sulawesi Selatan. Makam beliau memiliki jirat berbentuk persegi panjang yang terbuat dari batu dan disusun bertingkat, menunjukkan statusnya sebagai seorang raja. Pada bagian kepala dan kaki makam terdapat nisan batu berukuran besar dengan bentuk khas makam Islam di Sulawesi Selatan. Makam Sultan Hasanuddin ditempatkan pada posisi yang lebih menonjol dibandingkan makam-makam di sekitarnya, mencerminkan kedudukannya sebagai penguasa penting Kerajaan Gowa. Arsitektur makam memperlihatkan perpaduan antara tradisi lokal Bugis-Makassar dan pengaruh Islam, yang tampak pada penggunaan jirat bertingkat, nisan batu, serta orientasi makam yang mengikuti tradisi pemakaman Islam. Sebagai tempat peristirahatan terakhir Sultan Hasanuddin yang dikenal sebagai “Ayam Jantan dari Timur”, makam ini memiliki nilai sejarah yang tinggi dan menjadi salah satu objek ziarah serta warisan budaya penting di Sulawesi Selatan.", 
+        desc: "Sultan Hasanuddin dimakamkan dalam sebuah cungkup yang berada di Kompleks Makam Raja-Raja Gowa di Katangka, Kabupaten Gowa, Sulawesi Selatan. Makam beliau memiliki jirat berbentuk persegi panjang yang terbuat dari batu dan disusun bertingkat, menunjukkan statusnya sebagai seorang raja. Pada bagian kepala dan kaki makam terdapat nisan batu berukuran besar dengan bentuk khas makam Islam di Sulawesi Selatan. Makam Sultan Hasanuddin ditempatkan pada posisi yang lebih menonjol dibandingkan makam-makam di sekitarnya, mencerminkan kedudukannya sebagai penguasa penting Kerajaan Gowa. Arsitektur makam memperlihatkan perpaduan antara tradisi lokal Bugis-Makassar dan pengaruh Islam, yang tampak pada penggunaan jirat bertingkat, nisan batu, serta orientasi makam yang mengikuti tradisi pemakaman Islam. Sebagai tempat peristirahatan terakhir Sultan Hasanuddin yang dikenal sebagai \"Ayam Jantan dari Timur\", makam ini memiliki nilai sejarah yang tinggi dan menjadi salah satu objek ziarah serta warisan budaya penting di Sulawesi Selatan.", 
         img: "makam_sh.jpg", 
         model3d: "makam_sh.glb", 
         grid: 4, 
         time: 90, 
         baseScore: 1900,
         quiz: { question: "", options: ["Makam Sultan Hasanuddin", "Makam Pangeran Diponegoro", "Benteng Somba Opu"], correct: 0 }
-    },
+    }
 };
 
 let currentLevel = 1;
@@ -1473,13 +1444,16 @@ let rows, cols, boardSize, currPiece = null, timeLeft = 0, timerInterval, gameSt
 let currentScore = 1200, gameActive = true, levelCompleted = false;
 let currentTimeBonus = 0;
 let isNewHighScoreFlag = false;
-const totalLevels = 5;
+const totalLevels = 6;
 
 const nextLevelBtn = document.getElementById('gameNextBtn');
 function updateNextLevelButton() { nextLevelBtn.disabled = !levelCompleted; }
 function setLevelCompleted(completed) { levelCompleted = completed; updateNextLevelButton(); }
 function updateGameScoreUI() { const span = document.getElementById("gameScoreValue"); span.innerText = currentScore; span.classList.add("score-animation"); setTimeout(()=>span.classList.remove("score-animation"),200); }
-function updateLevelCounter() { document.getElementById('levelCounter').innerText = `${currentLevel}/${totalLevels}`; }
+function updateLevelCounter() { 
+    const levelCounter = document.getElementById('levelCounter');
+    if (levelCounter) levelCounter.innerText = `${currentLevel}/${totalLevels}`;
+}
 
 function deductScore() { 
     if (!gameStarted || !gameActive || levelCompleted) return; 
@@ -1496,7 +1470,6 @@ function deductScore() {
 function getImage() { return artefacts[currentLevel].img; }
 function playWarningSound() { if(soundSystem.sfxEnabled){ soundSystem.playBeep(880,0.08,'sine',0.15); } }
 
-// ========== CLUE POPUP DENGAN 3 PILIHAN GANDA ==========
 let currentQuizAnswered = false;
 function showCluePopupWithQuiz(levelNum, onSuccessCallback) {
     const data = artefacts[levelNum];
@@ -1555,7 +1528,6 @@ function showCluePopupWithQuiz(levelNum, onSuccessCallback) {
     playClueSound();
 }
 
-// GAME LOGIC
 function initializeLevel() {
     if(timerInterval) clearInterval(timerInterval);
     gameStarted=true; gameActive=true; setLevelCompleted(false);
@@ -1572,7 +1544,6 @@ function initializeLevel() {
     let gridSize = rows;
     if(gridSize === 3) boardSize = 360;
     else if(gridSize === 4) boardSize = 440;
-    else if(gridSize === 5) boardSize = 520;
     else boardSize = 360;
     
     startTimer();
@@ -1661,7 +1632,6 @@ function showArtifact(){
     document.getElementById("finalScoreSpan").innerHTML = `🏅 SKOR: ${currentScore} <span style="font-size:0.7rem;">(+${currentTimeBonus})</span>`;
     document.getElementById("highScoreMessage").style.display = isNewHighScoreFlag ? "inline-flex" : "none";
     
-    // Tampilkan ucapan selamat khusus untuk level terakhir
     const congratsContainer = document.getElementById("congratsContainer");
     if (currentLevel === totalLevels) {
         congratsContainer.style.display = "block";
@@ -1689,7 +1659,7 @@ function goToNextLevel() {
     } else { 
         startConfetti();
         setTimeout(() => startConfetti(), 800);
-        alert("🎉🎊 SELAMAT! Anda telah menyelesaikan seluruh 5 level artefak Nusantara! 🎊🎉\n\nSkor akhir: " + currentScore + " poin.\n\nTerima kasih telah menjelajahi warisan budaya Sulawesi Selatan! 🏺🗿");
+        alert("🎉🎊 SELAMAT! Anda telah menyelesaikan seluruh 6 level artefak Nusantara! 🎊🎉\n\nSkor akhir: " + currentScore + " poin.\n\nTerima kasih telah menjelajahi warisan budaya Sulawesi Selatan! 🏺🗿");
         currentLevel=1; 
         setLevelCompleted(false); 
         startGameWithClue(); 
@@ -1728,7 +1698,6 @@ function showGame(){
     startGameWithClue(); 
 }
 
-// Fungsi untuk menutup splash screen dan menampilkan menu utama
 function closeSplashAndShowMenu() {
     const splash = document.getElementById('splashScreen');
     splash.style.animation = 'splashFadeIn 0.3s reverse';
@@ -1813,7 +1782,6 @@ window.addEventListener('resize', () => {
 document.addEventListener("DOMContentLoaded",()=>{
     resizeConfetti();
     
-    // Sembunyikan menu utama dan audio controls saat splash screen tampil
     document.getElementById('mainMenu').style.display = 'none';
     document.getElementById('gameArea').style.display = 'none';
     document.getElementById('audioControls').style.display = 'none';
@@ -1831,10 +1799,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     toggleMusic.addEventListener("click",()=>{ const on=soundSystem.toggleMusic(); toggleMusic.textContent=on?"🎵 MUSIK ON":"🎵 MUSIK OFF"; if(on) soundSystem.startMusic(); playClickSound(); });
     toggleSfx.addEventListener("click",()=>{ const on=soundSystem.toggleSfx(); toggleSfx.textContent=on?"🔊 SFX ON":"🔊 SFX OFF"; if(on) playClickSound(); });
     
-    // Event listener untuk tombol mulai dari splash screen
     document.getElementById("enterMainMenuBtn").addEventListener("click", closeSplashAndShowMenu);
-    
-    // Event listener untuk menu utama
     document.getElementById("menuStartBtn").addEventListener("click",()=>{ playClickSound(); showGame(); });
     document.getElementById("menuResetScoreBtn").addEventListener("click",resetHighScore);
     document.getElementById("backToMenuBtn").addEventListener("click",()=>{ playClickSound(); showMenu(); });
@@ -1849,7 +1814,7 @@ document.addEventListener("DOMContentLoaded",()=>{
             } else { 
                 startConfetti();
                 setTimeout(() => startConfetti(), 800);
-                alert("🎉🎊 SELAMAT! Anda telah menyelesaikan seluruh 5 level artefak Nusantara! 🎊🎉\n\nSkor akhir: " + currentScore + " poin.\n\nTerima kasih telah menjelajahi warisan budaya Sulawesi Selatan! 🏺🗿");
+                alert("🎉🎊 SELAMAT! Anda telah menyelesaikan seluruh 6 level artefak Nusantara! 🎊🎉\n\nSkor akhir: " + currentScore + " poin.\n\nTerima kasih telah menjelajahi warisan budaya Sulawesi Selatan! 🏺🗿");
                 currentLevel=1; 
                 setLevelCompleted(false); 
                 startGameWithClue(); 

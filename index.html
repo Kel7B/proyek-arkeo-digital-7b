@@ -1575,7 +1575,7 @@ function resetHighScore() { if(confirm("Yakin mereset seluruh prestasi?")){ high
 // ==================== 6 LEVEL LENGKAP ====================
 const artefacts = {
     1: { 
-        name: "Lukisan Dinding", 
+        name: "Lukisan Cap Tangan dan Babi", 
         clue: "Objek ini merupakan salah satu seni gambar prasejarah terkenal di Maros. Terdapat jejak tangan manusia yang dibuat dengan serta gambar seekor hewan yang sering dijumpai oleh masyarakat prasejarah Sulawesi. Objek apakah yang dimaksud?", 
         desc: "Lukisan cap tangan dan babi rusa merupakan bagian dari seni lukisan dinding gua yang ditemukan di Gua Pettakere, Maros, Sulawesi Selatan. Cap tangan dibuat dengan menempelkan tangan pada permukaan batu lalu menyemprotkan pigmen di sekelilingnya hingga membentuk siluet tangan. Sementara itu, lukisan babi menggambarkan hewan yang hidup di sekitar lingkungan masyarakat prasejarah dan kemungkinan memiliki peran penting dalam kehidupan mereka. Kedua motif ini menunjukkan bahwa manusia prasejarah telah memiliki kemampuan berpikir simbolik, mengamati lingkungan sekitar, dan mengekspresikan gagasannya melalui seni. Keberadaan lukisan tersebut menjadikan Gua Pettakere sebagai salah satu situs penting untuk memahami kehidupan dan budaya masyarakat prasejarah di Sulawesi Selatan", 
         img: "cadas.jpeg", 
@@ -1583,7 +1583,7 @@ const artefacts = {
         grid: 2, 
         time: 40, 
         baseScore: 1100,
-        quiz: { question: "", options: ["Lukisan Perahu dan Laut", "Lukisan Pohon dan Burung", "Lukisan Dinding Gua"], correct: 2 }
+        quiz: { question: "", options: ["Lukisan Perahu dan Laut", "Lukisan Pohon dan Burung", "Lukisan Cap Tangan dan Babi"], correct: 2 }
     },
     2: { 
         name: "Maros Point", 
@@ -1862,7 +1862,7 @@ function goToNextLevel() {
     } else { 
         startConfetti();
         setTimeout(() => startConfetti(), 800);
-        alert("🎉🎊 SELAMAT! Anda telah menyelesaikan seluruh 6 level artefak Nusantara! 🎊🎉\n\nSkor akhir: " + currentScore + " poin.\n\nTerima kasih telah menjelajahi warisan budaya Sulawesi Selatan! 🏺🗿");
+        alert("🎉🎊 SELAMAT! Anda telah menyelesaikan seluruh 6 level! 🎊🎉\n\nSkor akhir: " + currentScore + " poin.\n\nTerima kasih telah menjelajahi warisan budaya Sulawesi Selatan! 🏺🗿");
         currentLevel=1; 
         setLevelCompleted(false); 
         startGameWithClue(); 

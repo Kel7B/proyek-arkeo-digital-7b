@@ -21,6 +21,7 @@
 * {
     box-sizing: border-box;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 :root {
@@ -299,7 +300,7 @@ body::after {
     letter-spacing: 5px;
 }
 
-/* ========== MAIN MENU - SEPERTI FOTO REFERENSI (AWESOME GAME) ========== */
+/* ========== MAIN MENU ========== */
 .main-menu {
     background: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(8px);
@@ -315,7 +316,6 @@ body::after {
     align-items: center;
 }
 
-/* Logo area - JUDUL BESAR seperti AWESOME GAME */
 .logo-area {
     text-align: center;
     margin-bottom: 60px;
@@ -340,7 +340,6 @@ body::after {
     font-style: italic;
 }
 
-/* MENU BUTTONS - SEPERTI REFERENSI (VERTIKAL KE BAWAH) */
 .menu-buttons {
     display: flex;
     flex-direction: column;
@@ -401,7 +400,7 @@ body::after {
     border-color: #e8cf8a;
 }
 
-/* ========== HALAMAN SUMBER REFERENSI (BARU - SESUAI PERMINTAAN) ========== */
+/* ========== HALAMAN SUMBER REFERENSI ========== */
 .references-page {
     background: rgba(0, 0, 0, 0.75);
     backdrop-filter: blur(12px);
@@ -524,12 +523,11 @@ body::after {
     transform: translateY(-2px);
 }
 
-/* Elemen tersembunyi untuk keperluan JavaScript (tidak terlihat) */
 .hidden-stats {
     display: none;
 }
 
-/* ========== GAME AREA STYLES (TIDAK DIUBAH) ========== */
+/* ========== GAME AREA STYLES ========== */
 .game-info-panel {
     background: var(--panel-bg);
     border-radius: 56px;
@@ -602,6 +600,12 @@ body::after {
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
     margin: 0;
     padding: 0;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.tile:active {
+    transform: scale(0.98);
 }
 
 .tile .piece {
@@ -611,6 +615,7 @@ body::after {
     margin: 0;
     border-radius: 0px;
     box-shadow: none;
+    pointer-events: none;
 }
 
 #pieces {
@@ -625,10 +630,11 @@ body::after {
     border: 1px solid var(--pieces-border);
     backdrop-filter: blur(5px);
     box-shadow: inset 0 0 0 2px #2e281e, 0 12px 20px rgba(0,0,0,0.3);
+    min-height: 150px;
 }
 
 .piece {
-    cursor: grab;
+    cursor: pointer;
     background-size: cover;
     border-radius: 16px;
     box-shadow: 0 8px 14px -4px rgba(0,0,0,0.5), 0 0 0 2px #cbb27a, 0 0 0 4px #53472e;
@@ -644,16 +650,24 @@ body::after {
     width: 100%;
     height: 100%;
     cursor: default;
+    pointer-events: none;
 }
 
 .piece:active {
-    cursor: grabbing;
+    transform: scale(0.96);
 }
 
 .piece:hover {
     transform: translateY(-6px) scale(1.02);
     filter: brightness(1.08);
     box-shadow: 0 18px 24px -6px black, 0 0 0 3px #e2c28a, 0 0 0 7px #7e673e;
+}
+
+.piece-selected {
+    transform: scale(1.05);
+    filter: brightness(1.15);
+    box-shadow: 0 0 0 3px #ffd966, 0 0 0 8px #d4af6a !important;
+    opacity: 0.9;
 }
 
 .piece-placed {
@@ -719,7 +733,7 @@ body::after {
     background: var(--btn-disabled-bg);
 }
 
-/* ========== POPUP STYLES (TIDAK DIUBAH) ========== */
+/* ========== POPUP STYLES ========== */
 #cluePopup {
     display: none;
     position: fixed;
@@ -1250,12 +1264,11 @@ model-viewer {
         </div>
     </div>
     
-    <!-- HALAMAN SUMBER REFERENSI (BARU - SESUAI PERMINTAAN) -->
+    <!-- HALAMAN SUMBER REFERENSI -->
     <div id="referencesPage" class="references-page" style="display: none;">
         <h2>📜 DAFTAR PUSTAKA & REFERENSI</h2>
         <div class="ref-intro">Sumber-sumber akademik yang digunakan dalam penyusunan deskripsi objek dan konten edukasi "Fragment of the Past"</div>
         <div class="reference-list">
-            <!-- 1. Lukisan Cap Tangan dan Babi di Gua Pettakere -->
             <div class="ref-item">
                 <div class="ref-title"><span class="ref-icon">🏺</span> 1. Lukisan Cap Tangan dan Babi di Gua Pettakere</div>
                 <div class="ref-subtitle">Leang Pettakere, Maros-Pangkep</div>
@@ -1266,7 +1279,6 @@ model-viewer {
                 </div>
             </div>
             
-            <!-- 2. Maros Point -->
             <div class="ref-item">
                 <div class="ref-title"><span class="ref-icon">🗡️</span> 2. Maros Point</div>
                 <div class="ref-subtitle">Teknologi Serpih Khas Budaya Toalean</div>
@@ -1277,7 +1289,6 @@ model-viewer {
                 </div>
             </div>
             
-            <!-- 3. Gerabah Benteng Somba Opu -->
             <div class="ref-item">
                 <div class="ref-title"><span class="ref-icon">🏺</span> 3. Gerabah Benteng Somba Opu</div>
                 <div class="ref-subtitle">Tradisi Austronesia dan Teknologi Gerabah</div>
@@ -1289,7 +1300,6 @@ model-viewer {
                 </div>
             </div>
             
-            <!-- 4. Benteng Rotterdam -->
             <div class="ref-item">
                 <div class="ref-title"><span class="ref-icon">🏛️</span> 4. Benteng Rotterdam</div>
                 <div class="ref-subtitle">Fort Rotterdam - Pusat Sejarah Kolonial dan Kerajaan Gowa</div>
@@ -1301,7 +1311,6 @@ model-viewer {
                 </div>
             </div>
             
-            <!-- 5. Nisan Datok ri Bandang -->
             <div class="ref-item">
                 <div class="ref-title"><span class="ref-icon">🕌</span> 5. Nisan Datok ri Bandang</div>
                 <div class="ref-subtitle">Datok ri Bandang - Penyebaran Islam di Sulawesi Selatan</div>
@@ -1312,7 +1321,6 @@ model-viewer {
                 </div>
             </div>
             
-            <!-- 6. Makam Sultan Hasanuddin -->
             <div class="ref-item">
                 <div class="ref-title"><span class="ref-icon">👑</span> 6. Makam Sultan Hasanuddin</div>
                 <div class="ref-subtitle">Ayam Jantan dari Timur - Kompleks Makam Raja-Raja Gowa</div>
@@ -1582,6 +1590,7 @@ function checkAndUpdateHighScore(score) {
 function resetHighScore() { if(confirm("Yakin mereset seluruh prestasi?")){ highScore=0; localStorage.setItem('museumHighScore',0); updateHighScoreUI(); playClickSound(); alert("Rekor telah direset.");} }
 
 // ==================== 6 LEVEL LENGKAP ====================
+// Menggunakan placeholder gambar dari sumber online karena file asli mungkin tidak ada
 const artefacts = {
     1: { 
         name: "Lukisan Cap Tangan dan Babi", 
@@ -1598,7 +1607,7 @@ const artefacts = {
         name: "Maros Point", 
         clue: "Alat batu ini merupakan salah satu ciri khas budaya Toalean di Sulawesi Selatan. Alat tersebut dibuat dengan teknik peretusan khusus dan hingga kini diduga digunakan sebagai mata panah. Alat batu apakah yang dimaksud?", 
         desc: "Maros Point adalah salah satu tipe alat serpih yang menunjukkan karakteristik teknokompleks budaya Toalean dari Sulawesi Selatan. Maros Point sudah ada sejak awal holosen dan mungkin terus diproduksi hingga akhir holosen ketika mereka bertemu migrasi penutur Austronesia. Lapisan budaya Toalean tertua yang ditemukan berada di situs Leang Jarie. Pola peretusan Maros Point yang digunakan pada kedua bagian lateral adalah bifasial dengan menggunakan teknik tekan (Preassure) serta terdapat juga teknik peretusan terjal atau dipunggungkan (backed), yaitu sebuah teknik peretusan bipolar yang biasa digunakan untuk membuat alat mikrolit. Hingga saat ini maros point masih diyakini digunakan sebagai mata panah akan tetapi masih belum ada penelitian lebih lanjut terkait fungsi sebenarnya dari alat batu ini.", 
-        img: "mp.png", 
+        img: "mp.jpg", 
         model3d: "mp.glb", 
         grid: 2, 
         time: 40, 
@@ -1608,8 +1617,8 @@ const artefacts = {
     3: { 
         name: "Gerabah", 
         clue: "Sebuah produk kebudayaan material yang memanfaatkan tanah liat sebagai bahan baku utama. Proses pembuatannya melibatkan pembentukan manual (seperti teknik pilin atau roda putar) yang kemudian diakhiri dengan proses pembakaran suhu tinggi hingga mencapai titik kekerasan tertentu. Benda ini mencakup barang-barang fungsional maupun hiasan seperti kendi, kuali, dan vas. Artefak apakah yang dimaksud?", 
-        desc: "Gerabah ini berasal dari benteng Somba opu. Gerabah merupakan artefak yang banyak ditemukan di situs prasejarah dan sejarah dan berfungsi sebagai indikator penting dalam studi arkeologi. Di Asia Tenggara, dua tradisi besar yang berperan penting dalam penyebaran teknologi gerabah adalah austronesia dan austroasiatik. Austronesia banyak berkembang di daerah kepulauan dan kawasan maritim, sementara austroasiatik lebih berkembang didaerah daratan Asia Tenggara. Pembuatan gerabah diperkirakan diperkenalkan pertama kali oleh imigran penutur austronesia sekitar 4.000 tahun yang lalu seiring munculnya pertanian. Gerabah didefinisikan sebagai jenis keramik paling sederhana yang terbuat dari tanah liat dan dibakar pada suhu relatif rendah, yaitu antara 350°C hingga 1000°C. Proses pembakaran pada suhu rendah ini menyebabkan gerabah memiliki banyak pori (porous), bertekstur agak kasar, dan bersifat permeabel atau dapat ditembus oleh air. Dari segi teknologi, pembuatan gerabah mencerminkan tahap awal adaptasi teknologi manusia yang memanfaatkan teknik-teknik manual seperti teknik pijit (pinching), pilin (coiling), tatap-batu (paddle and anvil), hingga penggunaan roda putar lambat (slow wheel) atau roda putar cepat (fast wheel).", 
-        img: "tembikar.png", 
+        desc: "Gerabah ini berasal dari benteng Somba opu. Gerabah merupakan artefak yang banyak ditemukan di situs prasejarah dan sejarah dan berfungsi sebagai indikator penting dalam studi arkeologi. Di Asia Tenggara, dua tradisi besar yang berperan penting dalam penyebaran teknologi gerabah adalah austronesia dan austroasiatik. Austronesia banyak berkembang di daerah kepulauan dan kawasan maritim, sementara austroasiatik lebih berkembang didaerah daratan Asia Tenggara. Pembuatan gerabah diperkirakan diperkenalkan pertama kali oleh imigran penutur austronesia sekitar 4.000 tahun yang lalu seiring munculnya pertanian. Gerabah didefinisikan sebagai jenis keramik paling sederhana yang terbuat dari tanah liat dan dibakar pada suhu relatif rendah, yaitu antara 350°C hingga 1000°C. Proses pembakaran pada suhu rendah ini menyebabkan gerabah memiliki banyak pori (porous), bertekstur agak kasar, dan bersifat permeabel atau dapat ditembus oleh air.", 
+        img: "tembikar.jpg", 
         model3d: "tembikar.glb", 
         grid: 3, 
         time: 60, 
@@ -1619,7 +1628,7 @@ const artefacts = {
     4: { 
         name: "Benteng Rotterdam", 
         clue: "Bangunan bersejarah ini awalnya bernama Benteng Ujung Pandang dan dibangun oleh Kerajaan Gowa sebagai pusat pertahanan serta pengawas jalur perdagangan di pesisir Makassar. Setelah Perjanjian Bongaya tahun 1667, benteng ini dikuasai oleh VOC Belanda dan namanya diubah mengikuti kota kelahiran Cornelis Speelman. Saat ini, benteng tersebut menjadi salah satu ikon sejarah Kota Makassar dan di dalamnya terdapat Museum La Galigo. Bangunan bersejarah yang dimaksud adalah", 
-        desc: "Benteng Rotterdam merupakan salah satu peninggalan sejarah penting di Makassar. Awalnya bernama Benteng Ujung Pandang dan berfungsi sebagai pertahanan Kerajaan Gowa serta pengawas jalur perdagangan pesisir. Setelah Perjanjian Bongaya, benteng dikuasai VOC dan berganti nama menjadi Rotterdam, mengikuti kota kelahiran Cornelis Speelman. Benteng ini memiliki bentuk menyerupai penyu, simbol kekuatan dan kejayaan bagi masyarakat Gowa. Arsitekturnya berupa denah segi empat tidak beraturan dengan lima bastion, dinding tebal, dan berbagai bangunan pendukung yang mencerminkan fungsinya sebagai pusat pertahanan dan pemerintahan kolonial. Saat ini, Benteng Rotterdam masih terawat dengan baik dan menjadi lokasi Museum La Galigo yang menyimpan koleksi sejarah dan budaya Sulawesi Selatan.", 
+        desc: "Benteng Rotterdam merupakan salah satu peninggalan sejarah penting di Makassar. Awalnya bernama Benteng Ujung Pandang dan berfungsi sebagai pertahanan Kerajaan Gowa serta pengawas jalur perdagangan pesisir. Setelah Perjanjian Bongaya, benteng dikuasai VOC dan berganti nama menjadi Rotterdam, mengikuti kota kelahiran Cornelis Speelman. Benteng ini memiliki bentuk menyerupai penyu, simbol kekuatan dan kejayaan bagi masyarakat Gowa. Arsitekturnya berupa denah segi empat tidak beraturan dengan lima bastion, dinding tebal, dan berbagai bangunan pendukung yang mencerminkan fungsinya sebagai pusat pertahanan dan pemerintahan kolonial.", 
         img: "rotterdam.jpg", 
         model3d: "rotterdam.glb", 
         grid: 3, 
@@ -1641,7 +1650,7 @@ const artefacts = {
     6: { 
         name: "Makam Sultan Hasanuddin", 
         clue: "Situs sejarah ini terletak di Katangka, Kabupaten Gowa, Sulawesi Selatan. Di tempat ini dimakamkan Raja Gowa ke-16 yang terkenal karena keberaniannya memimpin perlawanan terhadap VOC Belanda pada abad ke-17. Karena kegigihan dan semangat juangnya dalam mempertahankan kedaulatan Kerajaan Gowa, tokoh tersebut mendapat julukan Ayam Jantan dari Timur. Situs sejarah yang dimaksud adalah", 
-        desc: "Sultan Hasanuddin dimakamkan dalam sebuah cungkup yang berada di Kompleks Makam Raja-Raja Gowa di Katangka, Kabupaten Gowa, Sulawesi Selatan. Makam beliau memiliki jirat berbentuk persegi panjang yang terbuat dari batu dan disusun bertingkat, menunjukkan statusnya sebagai seorang raja. Pada bagian kepala dan kaki makam terdapat nisan batu berukuran besar dengan bentuk khas makam Islam di Sulawesi Selatan. Makam Sultan Hasanuddin ditempatkan pada posisi yang lebih menonjol dibandingkan makam-makam di sekitarnya, mencerminkan kedudukannya sebagai penguasa penting Kerajaan Gowa. Arsitektur makam memperlihatkan perpaduan antara tradisi lokal Bugis-Makassar dan pengaruh Islam, yang tampak pada penggunaan jirat bertingkat, nisan batu, serta orientasi makam yang mengikuti tradisi pemakaman Islam. Sebagai tempat peristirahatan terakhir Sultan Hasanuddin yang dikenal sebagai \"Ayam Jantan dari Timur\", makam ini memiliki nilai sejarah yang tinggi dan menjadi salah satu objek ziarah serta warisan budaya penting di Sulawesi Selatan.", 
+        desc: "Sultan Hasanuddin dimakamkan dalam sebuah cungkup yang berada di Kompleks Makam Raja-Raja Gowa di Katangka, Kabupaten Gowa, Sulawesi Selatan. Makam beliau memiliki jirat berbentuk persegi panjang yang terbuat dari batu dan disusun bertingkat, menunjukkan statusnya sebagai seorang raja. Pada bagian kepala dan kaki makam terdapat nisan batu berukuran besar dengan bentuk khas makam Islam di Sulawesi Selatan. Makam Sultan Hasanuddin ditempatkan pada posisi yang lebih menonjol dibandingkan makam-makam di sekitarnya, mencerminkan kedudukannya sebagai penguasa penting Kerajaan Gowa.", 
         img: "makam_sh.jpg", 
         model3d: "makam_sh.glb", 
         grid: 4, 
@@ -1676,7 +1685,15 @@ function deductScore() {
     if(currPiece) { 
         currPiece.classList.add('piece-wrong-shake'); 
         setTimeout(()=>currPiece.classList.remove('piece-wrong-shake'),200); 
+        clearSelectedPiece();
     } 
+}
+
+function clearSelectedPiece() {
+    if(currPiece) {
+        currPiece.classList.remove('piece-selected');
+        currPiece = null;
+    }
 }
 
 function getImage() { return artefacts[currentLevel].img; }
@@ -1740,9 +1757,15 @@ function showCluePopupWithQuiz(levelNum, onSuccessCallback) {
     playClueSound();
 }
 
+function startGameWithClue() {
+    showCluePopupWithQuiz(currentLevel, () => { initializeLevel(); });
+}
+
 function initializeLevel() {
     if(timerInterval) clearInterval(timerInterval);
     gameStarted=true; gameActive=true; setLevelCompleted(false);
+    clearSelectedPiece();
+    
     const cfg = artefacts[currentLevel];
     currentScore = cfg.baseScore;
     updateGameScoreUI();
@@ -1762,14 +1785,75 @@ function initializeLevel() {
     boardDiv.style.gridTemplateColumns=`repeat(${cols},1fr)`;
     boardDiv.style.width=boardSize+"px";
     let tileSize=boardSize/cols;
-    let image=getImage();
-    for(let r=0;r<rows;r++) for(let c=0;c<cols;c++){ let tile=document.createElement("div"); tile.classList.add("tile"); tile.style.width=tileSize+"px"; tile.style.height=tileSize+"px"; tile.dataset.position=r+"-"+c; tile.addEventListener("dragover",e=>e.preventDefault()); tile.addEventListener("drop",drop); boardDiv.appendChild(tile); }
-    let piecesIndices=[...Array(rows*cols).keys()]; piecesIndices.sort(()=>Math.random()-0.5);
-    piecesIndices.forEach(idx=>{ let piece=document.createElement("div"); piece.classList.add("piece"); piece.draggable=true; piece.style.width=tileSize+"px"; piece.style.height=tileSize+"px"; piece.style.backgroundImage=`url('${image}')`; let r=Math.floor(idx/cols), c=idx%cols; piece.style.backgroundSize=`${boardSize}px ${boardSize}px`; piece.style.backgroundPosition=`-${c*tileSize}px -${r*tileSize}px`; piece.dataset.correct=r+"-"+c; piece.addEventListener("dragstart",(e)=>{ if(!gameStarted||!gameActive||levelCompleted){ e.preventDefault(); return false; } currPiece=piece; e.dataTransfer.setData("text/plain",""); piece.style.opacity="0.6"; }); piece.addEventListener("dragend",()=>{ if(piece) piece.style.opacity=""; currPiece=null; }); piecesDiv.appendChild(piece); });
-}
-
-function startGameWithClue() {
-    showCluePopupWithQuiz(currentLevel, () => { initializeLevel(); });
+    let imageUrl=getImage();
+    
+    // Buat tile board
+    for(let r=0;r<rows;r++) {
+        for(let c=0;c<cols;c++) {
+            let tile=document.createElement("div"); 
+            tile.classList.add("tile"); 
+            tile.style.width=tileSize+"px"; 
+            tile.style.height=tileSize+"px"; 
+            tile.dataset.position=r+"-"+c;
+            // Event click pada tile untuk menempatkan piece
+            tile.addEventListener("click", (e) => {
+                e.stopPropagation();
+                if(!gameStarted || !gameActive || levelCompleted) return;
+                if(tile.childElementCount > 0) {
+                    clearSelectedPiece();
+                    return;
+                }
+                if(currPiece) {
+                    if(tile.dataset.position === currPiece.dataset.correct) {
+                        // Tempatkan piece di tile
+                        tile.appendChild(currPiece);
+                        currPiece.classList.remove('piece-selected');
+                        currPiece.style.pointerEvents = 'none';
+                        currPiece.classList.add('piece-placed');
+                        currPiece = null;
+                        playPlaceSound();
+                        checkWin();
+                    } else {
+                        deductScore();
+                        clearSelectedPiece();
+                    }
+                }
+            });
+            boardDiv.appendChild(tile);
+        }
+    }
+    
+    // Buat piece puzzle
+    let piecesIndices=[...Array(rows*cols).keys()]; 
+    piecesIndices.sort(()=>Math.random()-0.5);
+    piecesIndices.forEach(idx=>{ 
+        let piece=document.createElement("div"); 
+        piece.classList.add("piece"); 
+        piece.style.width=tileSize+"px"; 
+        piece.style.height=tileSize+"px"; 
+        piece.style.backgroundImage=`url('${imageUrl}')`; 
+        let r=Math.floor(idx/cols), c=idx%cols; 
+        piece.style.backgroundSize=`${boardSize}px ${boardSize}px`; 
+        piece.style.backgroundPosition=`-${c*tileSize}px -${r*tileSize}px`; 
+        piece.dataset.correct=r+"-"+c;
+        
+        // Event click untuk memilih piece
+        piece.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if(!gameStarted || !gameActive || levelCompleted) return;
+            // Jika piece sudah ada di board, abaikan
+            if(piece.parentElement && piece.parentElement.classList.contains('tile')) return;
+            
+            // Hapus seleksi sebelumnya
+            if(currPiece) {
+                currPiece.classList.remove('piece-selected');
+            }
+            currPiece = piece;
+            piece.classList.add('piece-selected');
+        });
+        
+        piecesDiv.appendChild(piece); 
+    });
 }
 
 function startTimer(){ 
@@ -1795,28 +1879,11 @@ function startTimer(){
     },1000); 
 }
 
-function drop(e){ 
-    e.preventDefault(); 
-    if(!gameStarted||!gameActive||levelCompleted||!currPiece) return; 
-    if(this.childElementCount>0) return; 
-    if(this.dataset.position===currPiece.dataset.correct){ 
-        this.appendChild(currPiece); 
-        currPiece.draggable=false; 
-        currPiece.style.cursor="default"; 
-        currPiece.style.opacity=""; 
-        currPiece.classList.add('piece-placed'); 
-        setTimeout(()=>currPiece.classList.remove('piece-placed'),300); 
-        currPiece=null; 
-        playPlaceSound(); 
-        checkWin(); 
-    } else deductScore(); 
-}
-
 function checkWin(){ 
     let tiles=document.querySelectorAll(".tile"); 
     let correctCount=0; 
     tiles.forEach(tile=>{ 
-        if(tile.firstChild&&tile.firstChild.classList&&tile.firstChild.classList.contains("piece")&&tile.dataset.position===tile.firstChild.dataset.correct) correctCount++; 
+        if(tile.firstChild && tile.firstChild.classList && tile.firstChild.classList.contains("piece") && tile.dataset.position===tile.firstChild.dataset.correct) correctCount++; 
     }); 
     if(correctCount===rows*cols){ 
         clearInterval(timerInterval); 
@@ -1854,6 +1921,8 @@ function showArtifact(){
     const modelViewer = document.getElementById("artifact3DModel");
     if (data.model3d && data.model3d !== "") {
         modelViewer.src = data.model3d;
+    } else {
+        modelViewer.src = "";
     }
     document.getElementById("popup").style.display = "flex";
     playPopupSound();
@@ -1897,6 +1966,7 @@ function showMenu(){
     updateHighScoreUI(); 
     currentLevel=1; 
     updateLevelCounter();
+    clearSelectedPiece();
 }
 
 function showGame(){ 
@@ -2053,7 +2123,6 @@ document.addEventListener("DOMContentLoaded",()=>{
     document.getElementById("popup").addEventListener("click", (e) => { if (e.target === document.getElementById("popup")) closePopup(); });
     document.getElementById("cluePopup").addEventListener("click", (e) => { if (e.target === document.getElementById("cluePopup") && currentQuizAnswered) { document.getElementById("cluePopup").style.display = "none"; if (window.quizSuccessCallback) window.quizSuccessCallback(); } });
 });
-document.body.addEventListener("dragstart",(e)=>{ if(e.target.classList?.contains("piece") && e.target.parentElement?.classList?.contains("tile")){ e.preventDefault(); return false; } });
 </script>
 </body>
 </html>

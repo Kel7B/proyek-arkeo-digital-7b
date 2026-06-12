@@ -1171,10 +1171,9 @@ model-viewer {
     z-index: 9999;
     border-radius: 16px;
     box-shadow: 0 18px 30px rgba(0,0,0,0.6), 0 0 0 3px #e8cf8a;
-    opacity: 0.85;
+    opacity: 0.82;
     display: none;
-    background-size: cover;
-    transform: translate(-50%, -50%) scale(1.08);
+    background-repeat: no-repeat;
     transition: none;
 }
 
@@ -1851,13 +1850,15 @@ function clearTouchSelection() {
 
 function showGhost(piece, x, y) {
     const size = parseInt(piece.style.width);
+    const half = size / 2;
     touchGhost.style.width = size + 'px';
     touchGhost.style.height = size + 'px';
     touchGhost.style.backgroundImage = piece.style.backgroundImage;
     touchGhost.style.backgroundSize = piece.style.backgroundSize;
     touchGhost.style.backgroundPosition = piece.style.backgroundPosition;
-    touchGhost.style.left = x + 'px';
-    touchGhost.style.top = y + 'px';
+    // Pusatkan ghost di bawah jari
+    touchGhost.style.left = (x - half) + 'px';
+    touchGhost.style.top = (y - half - 20) + 'px';
     touchGhost.style.display = 'block';
 }
 
@@ -1866,25 +1867,42 @@ function hideGhost() {
 }
 
 function getTileAtPoint(x, y) {
-    // Sembunyikan ghost sementara agar tidak menghalangi elementFromPoint
-    touchGhost.style.display = 'none';
+    // Ghost sudah pasti display:none saat dipanggil dari touchend,
+    // tapi saat touchmove kita sembunyikan dulu agar tidak menghalangi
+    const wasVisible = touchGhost.style.display !== 'none';
+    if (wasVisible) touchGhost.style.display = 'none';
     const el = document.elementFromPoint(x, y);
-    touchGhost.style.display = 'block';
+    if (wasVisible) touchGhost.style.display = 'block';
     if (!el) return null;
-    // Cari tile terdekat (bisa kena child element)
     if (el.classList.contains('tile')) return el;
     if (el.closest && el.closest('.tile')) return el.closest('.tile');
     return null;
 }
 
 function tryPlaceOnTile(tile, piece) {
-    if (!tile || !piece) return false;
+    if (!piece) return false;
     if (!gameStarted || !gameActive || levelCompleted) return false;
+
+    // Pastikan piece ada di tray dulu (bukan di tile lain)
+    const piecesDiv = document.getElementById('pieces');
+
+    // Tidak ada tile yang valid di titik lepas → kembalikan ke tray
+    if (!tile) {
+        piece.style.opacity = '';
+        if (!piecesDiv.contains(piece)) piecesDiv.appendChild(piece);
+        return false;
+    }
+
+    // Tile sudah terisi → kurangi skor, kembalikan ke tray
     if (tile.childElementCount > 0) {
+        piece.style.opacity = '';
+        if (!piecesDiv.contains(piece)) piecesDiv.appendChild(piece);
         deductScore();
         return false;
     }
+
     if (tile.dataset.position === piece.dataset.correct) {
+        // Benar: masukkan ke tile
         tile.appendChild(piece);
         piece.draggable = false;
         piece.style.cursor = 'default';
@@ -1896,6 +1914,9 @@ function tryPlaceOnTile(tile, piece) {
         checkWin();
         return true;
     } else {
+        // Salah: kembalikan ke tray, kurangi skor
+        piece.style.opacity = '';
+        if (!piecesDiv.contains(piece)) piecesDiv.appendChild(piece);
         currPiece = piece;
         deductScore();
         currPiece = null;
@@ -1952,31 +1973,33 @@ function setupTouchDrag() {
         piece.addEventListener('touchend', (e) => {
             if (!gameStarted || !gameActive || levelCompleted) {
                 hideGhost();
+                piece.style.opacity = '';
+                isDragging = false;
+                touchDragPiece = null;
                 return;
             }
             const touch = e.changedTouches[0];
 
             if (isDragging) {
-                // Mode DRAG: tempatkan di tile bawah jari
+                // Sembunyikan ghost DULU sebelum getTileAtPoint
                 hideGhost();
                 clearTouchHighlights();
                 piece.style.opacity = '';
                 currPiece = null;
-                const tile = getTileAtPoint(touch.clientX, touch.clientY);
-                tryPlaceOnTile(tile, piece);
                 isDragging = false;
                 touchDragPiece = null;
+                // Sekarang baru deteksi tile (ghost sudah tidak menghalangi)
+                const tile = getTileAtPoint(touch.clientX, touch.clientY);
+                tryPlaceOnTile(tile, piece);
             } else {
                 // Mode TAP: pilih/deselect piece
                 e.preventDefault();
                 if (touchSelectedPiece === piece) {
-                    // Tap piece yang sama → batalkan pilihan
                     clearTouchSelection();
                 } else {
                     clearTouchSelection();
                     touchSelectedPiece = piece;
                     piece.classList.add('touch-selected');
-                    // Highlight semua tile kosong
                     document.querySelectorAll('.tile').forEach(t => {
                         if (t.childElementCount === 0) t.classList.add('touch-highlight');
                     });

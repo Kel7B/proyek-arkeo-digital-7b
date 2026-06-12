@@ -1761,6 +1761,37 @@ function startGameWithClue() {
     showCluePopupWithQuiz(currentLevel, () => { initializeLevel(); });
 }
 
+// ========== FUNGSI UTAMA UNTUK MENGHITUNG UKURAN DINAMIS ==========
+function calculateDynamicBoardSize(gridSize) {
+    // Ambil lebar container game area
+    const container = document.querySelector('.container');
+    const containerWidth = container.clientWidth;
+    
+    // Maksimal ukuran board adalah 95% dari lebar container atau 95% dari lebar viewport
+    const maxWidth = Math.min(containerWidth * 0.95, window.innerWidth * 0.92);
+    
+    // Batasi maksimal ukuran board untuk tampilan yang nyaman
+    const maxBoardSize = Math.min(maxWidth, 480);
+    
+    // Hitung ukuran tile berdasarkan grid
+    let tileSize = Math.floor(maxBoardSize / gridSize);
+    let boardSize = tileSize * gridSize;
+    
+    // Pastikan board tidak terlalu besar di layar sangat kecil
+    if (boardSize > maxBoardSize) {
+        tileSize = Math.floor(maxBoardSize / gridSize);
+        boardSize = tileSize * gridSize;
+    }
+    
+    // Minimal ukuran tile 40px untuk kenyamanan sentuhan
+    if (tileSize < 40 && gridSize <= 4) {
+        tileSize = 40;
+        boardSize = tileSize * gridSize;
+    }
+    
+    return { boardSize, tileSize };
+}
+
 function initializeLevel() {
     if(timerInterval) clearInterval(timerInterval);
     gameStarted=true; gameActive=true; setLevelCompleted(false);
@@ -1776,25 +1807,27 @@ function initializeLevel() {
     rows = cfg.grid;
     cols = cfg.grid;
     timeLeft = cfg.time;
-    let gridSize = rows;
-    if(gridSize === 3) boardSize = 360;
-    else if(gridSize === 4) boardSize = 440;
-    else boardSize = 360;
+    
+    // Hitung ukuran dinamis berdasarkan grid
+    const { boardSize: dynamicBoardSize, tileSize: dynamicTileSize } = calculateDynamicBoardSize(rows);
+    const boardSizePx = dynamicBoardSize;
+    const tileSizePx = dynamicTileSize;
     
     startTimer();
-    boardDiv.style.gridTemplateColumns=`repeat(${cols},1fr)`;
-    boardDiv.style.width=boardSize+"px";
-    let tileSize=boardSize/cols;
-    let imageUrl=getImage();
+    boardDiv.style.gridTemplateColumns = `repeat(${cols}, ${tileSizePx}px)`;
+    boardDiv.style.width = boardSizePx + "px";
+    boardDiv.style.height = boardSizePx + "px";
+    
+    let imageUrl = getImage();
     
     // Buat tile board
-    for(let r=0;r<rows;r++) {
-        for(let c=0;c<cols;c++) {
-            let tile=document.createElement("div"); 
+    for(let r=0; r<rows; r++) {
+        for(let c=0; c<cols; c++) {
+            let tile = document.createElement("div"); 
             tile.classList.add("tile"); 
-            tile.style.width=tileSize+"px"; 
-            tile.style.height=tileSize+"px"; 
-            tile.dataset.position=r+"-"+c;
+            tile.style.width = tileSizePx + "px"; 
+            tile.style.height = tileSizePx + "px"; 
+            tile.dataset.position = r + "-" + c;
             // Event click pada tile untuk menempatkan piece
             tile.addEventListener("click", (e) => {
                 e.stopPropagation();
@@ -1824,18 +1857,18 @@ function initializeLevel() {
     }
     
     // Buat piece puzzle
-    let piecesIndices=[...Array(rows*cols).keys()]; 
-    piecesIndices.sort(()=>Math.random()-0.5);
-    piecesIndices.forEach(idx=>{ 
-        let piece=document.createElement("div"); 
+    let piecesIndices = [...Array(rows*cols).keys()]; 
+    piecesIndices.sort(() => Math.random() - 0.5);
+    piecesIndices.forEach(idx => { 
+        let piece = document.createElement("div"); 
         piece.classList.add("piece"); 
-        piece.style.width=tileSize+"px"; 
-        piece.style.height=tileSize+"px"; 
-        piece.style.backgroundImage=`url('${imageUrl}')`; 
-        let r=Math.floor(idx/cols), c=idx%cols; 
-        piece.style.backgroundSize=`${boardSize}px ${boardSize}px`; 
-        piece.style.backgroundPosition=`-${c*tileSize}px -${r*tileSize}px`; 
-        piece.dataset.correct=r+"-"+c;
+        piece.style.width = tileSizePx + "px"; 
+        piece.style.height = tileSizePx + "px"; 
+        piece.style.backgroundImage = `url('${imageUrl}')`; 
+        let r = Math.floor(idx/cols), c = idx%cols; 
+        piece.style.backgroundSize = `${boardSizePx}px ${boardSizePx}px`; 
+        piece.style.backgroundPosition = `-${c * tileSizePx}px -${r * tileSizePx}px`; 
+        piece.dataset.correct = r + "-" + c;
         
         // Event click untuk memilih piece
         piece.addEventListener("click", (e) => {
